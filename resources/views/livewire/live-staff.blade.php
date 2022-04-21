@@ -135,13 +135,20 @@
                 </tr>   
                     
                 @empty
-                <td colspan="2" class="text-center  px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <div>
-                        <div class="ml-3">
-                         <p class="text-center ">No record found...</p>
+                <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
+                    <td class="px-4 py-3" colspan="8">
+                      <div class="flex items-center justify-center text-sm text-center">
+                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                          <img class="object-cover w-full h-full rounded-full" src="/icon/icon.png" alt="" loading="lazy" />
+                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                         </div>
-                    </div>
-                </td>  
+                        <div>
+                          <p class="font-semibold">No Appointment Found</p>
+                          <p class="text-xs text-gray-600 dark:text-gray-400"></p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
                 @endforelse                      
             </tbody>
         </table>
@@ -221,13 +228,20 @@
                 </tr>   
                     
                 @empty
-                <td colspan="2" class="text-center  px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <div>
-                        <div class="ml-3">
-                         <p class="text-center ">No records found...</p>
+                <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
+                    <td class="px-4 py-3" colspan="8">
+                      <div class="flex items-center justify-center text-sm text-center">
+                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                          <img class="object-cover w-full h-full rounded-full" src="/icon/icon.png" alt="" loading="lazy" />
+                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                         </div>
-                    </div>
-                </td>  
+                        <div>
+                          <p class="font-semibold">No Appointments Available</p>
+                          <p class="text-xs text-gray-600 dark:text-gray-400"></p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
                 @endforelse                      
             </tbody>
         </table>

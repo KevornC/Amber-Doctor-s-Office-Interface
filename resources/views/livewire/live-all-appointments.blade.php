@@ -9,7 +9,6 @@
                     <div>
                         <h2 class="text-2xl font-semibold leading-tight">Amber Doctor's Office Appointments</h2>
                     </div>
-                    {{-- <form > --}}
                     <div class="my-2 flex sm:flex-row flex-col">
                         <div class="flex flex-row mb-1 sm:mb-0">
                             <div class="relative">
@@ -42,6 +41,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+              </div>
                 {{-- </form> --}}      
                            
         <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -342,6 +343,7 @@
               </form>
             </div>
         @endif
+        </div>
         </body>
         </div>
 </div>

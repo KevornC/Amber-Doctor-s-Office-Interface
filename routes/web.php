@@ -23,6 +23,7 @@ Route::get('/reset/{id}/',[App\Http\Controllers\LoginController::class,'resetPas
 
 Route::middleware(['staff'])->group(function(){
 Route::get('/dashboard',[App\Http\Controllers\StaffController::class,'home'])->name('staffDashboard');
+Route::get('/staff/all/appointments',[App\Http\Controllers\StaffController::class,'allAppointments'])->name('allStaffAppointments');
 Route::get('/staff/rest/password',[App\Http\Controllers\StaffController::class,'updatePassword'])->name('updateStaffPassword');
 Route::get('/staff/logout',[App\Http\Controllers\StaffController::class,'logout'])->name('staffLogout');
 });

@@ -24,7 +24,10 @@
     <div class="">
     <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
     <li>
-    <a href="{{route('staffDashboard')}}" class="block py-2 pr-4 pl-3 text-blue-600 rounded-2xl bg-primary-500 bg-white" aria-current="page">Home</a>
+    <a href="{{route('staffDashboard')}}" class="block py-2 pr-4 pl-3 text-blue-600 rounded-2xl hover:bg-primary-500 bg-white" aria-current="page">Home</a>
+    </li>
+    <li>
+    <a href="{{route('allStaffAppointments')}}" class="block py-2 pr-4 pl-3 text-blue-600 rounded-2xl hover:bg-primary-500 bg-white" aria-current="page">All Appointments</a>
     </li>
     <li>
     <a href="{{route('staffLogout')}}" class="block py-2 pr-4 pl-3 text-gray-600 rounded-2xl hover:bg-white hover:text-red-700">Logout</a>
