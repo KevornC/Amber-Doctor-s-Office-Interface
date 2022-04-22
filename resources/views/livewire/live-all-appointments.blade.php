@@ -13,7 +13,7 @@
                         <div class="flex flex-row mb-1 sm:mb-0">
                             <div class="relative">
                                 <p
-                                    class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                    class="appearance-none h-full rounded-l border block w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                                 {{$result['totalAppointments']}}
                                 </p>
                             </div>
@@ -95,7 +95,7 @@
                       @if($data['status']=='Follow Up')
                       <span class="px-2 py-1 font-semibold leading-tight bg-yellow-400 text-green-100 rounded-full dark:bg-green-700 dark:text-green-100">{{$data['status']}}</span>
                       @endif
-                      @if($data['status']=='Cancelled')
+                      @if($data['status']=='Canceled')
                       <span class="px-2 py-1 font-semibold leading-tight bg-gray-500 text-green-100 rounded-full dark:bg-green-700 dark:text-green-100">{{$data['status']}}</span>
                       @endif
                       @if($data['status']=='Showed')
@@ -111,7 +111,7 @@
                         <option value="">Update Status</option>
                         <option value="{{'Showed'.$data['id']}}">Showed</option>
                         <option value="{{'Follow Up'.$data['id']}}">Follow Up</option>
-                        <option value="{{'Cancelled'.$data['id']}}">Cancelled</option>
+                        <option value="{{'Canceled'.$data['id']}}">Canceled</option>
                         <option value="{{'Did Not Show'.$data['id']}}">Did Not Show</option>
                       </select>
                     </td>
@@ -178,7 +178,7 @@
                       @if($data['status']=='Follow Up')
                       <span class="px-2 py-1 font-semibold leading-tight bg-yellow-400 text-green-100 rounded-full dark:bg-green-700 dark:text-green-100">{{$data['status']}}</span>
                       @endif
-                      @if($data['status']=='Cancelled')
+                      @if($data['status']=='Canceled')
                       <span class="px-2 py-1 font-semibold leading-tight bg-gray-500 text-green-100 rounded-full dark:bg-green-700 dark:text-green-100">{{$data['status']}}</span>
                       @endif
                       @if($data['status']=='Showed')
@@ -194,7 +194,7 @@
                         <option value="">Update Status</option>
                         <option value="{{'Showed'.$data['id']}}">Showed</option>
                         <option value="{{'Follow Up'.$data['id']}}">Follow Up</option>
-                        <option value="{{'Cancelled'.$data['id']}}">Cancelled</option>
+                        <option value="{{'Canceled'.$data['id']}}">Canceled</option>
                         <option value="{{'Did Not Show'.$data['id']}}">Did Not Show</option>
                       </select>
                     </td>

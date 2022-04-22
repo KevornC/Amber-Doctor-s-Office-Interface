@@ -44,7 +44,7 @@
               @if($data['status']=='Follow Up')
               <span class="px-2 py-1 font-semibold leading-tight bg-yellow-400 text-green-100 rounded-full dark:bg-green-700 dark:text-green-100">{{$data['status']}}</span>
               @endif
-              @if($data['status']=='Cancelled')
+              @if($data['status']=='Canceled')
               <span class="px-2 py-1 font-semibold leading-tight bg-gray-500 text-green-100 rounded-full dark:bg-green-700 dark:text-green-100">{{$data['status']}}</span>
               @endif
               @if($data['status']=='Showed')
@@ -60,7 +60,7 @@
                 <option value="">Update Status</option>
                 <option value="{{'Showed'.$data['id']}}">Showed</option>
                 <option value="{{'Follow Up'.$data['id']}}">Follow Up</option>
-                <option value="{{'Cancelled'.$data['id']}}">Cancelled</option>
+                <option value="{{'Canceled'.$data['id']}}">Canceled</option>
                 <option value="{{'Did Not Show'.$data['id']}}">Did Not Show</option>
               </select>
             </td>
