@@ -17,6 +17,7 @@ class SystemDownMiddlewareNotification extends Component
             Session()->pull('userID');
         }
         Session()->pull('tempSystemDown');
+        Session()->pull('token');
         return redirect()->route('homepage');
     }
     public function render()

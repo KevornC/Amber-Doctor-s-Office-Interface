@@ -33,17 +33,23 @@ class LiveAppointments extends Component
     }
 
     public function editAppointment($editID){
-        $url = 'http://192.168.0.4:8080/api/edit/appointment/'.$editID;
+        $url = 'http://192.168.0.15:8080/api/edit/appointment/'.$editID;
 
         $curlHandler = curl_init();
-        
-        curl_setopt($curlHandler,CURLOPT_URL,$url);
-        curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($curlHandler);
         $result = json_decode($result,true);
         $result = $result['appointment'];
-        // dd($result);
         $this->appointmentID = $result['id'];
         $this->firstName = $result['firstName'];
         $this->lastName =  $result['lastName'];
@@ -75,14 +81,21 @@ class LiveAppointments extends Component
         );
 
         $information=http_build_query($data);
-        $url = 'http://192.168.0.4:8080/api/update/appointment/'.$userID.'/'.$id;
+        $url = 'http://192.168.0.15:8080/api/update/appointment/'.$userID.'/'.$id;
 
         $curlHandler = curl_init();
-        
-        curl_setopt($curlHandler,CURLOPT_URL,$url);
-        curl_setopt($curlHandler,CURLOPT_POST,true);
-        curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$information);
-        curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_POST,true);
+         curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$information);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($curlHandler);
         $result = json_decode($result,true);
@@ -112,14 +125,21 @@ class LiveAppointments extends Component
         );
 
         $information=http_build_query($data);
-        $url = 'http://192.168.0.4:8080/api/update/status';
+        $url = 'http://192.168.0.15:8080/api/update/status';
 
         $curlHandler = curl_init();
-        
-        curl_setopt($curlHandler,CURLOPT_URL,$url);
-        curl_setopt($curlHandler,CURLOPT_POST,true);
-        curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$information);
-        curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_POST,true);
+         curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$information);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($curlHandler);
         $result = json_decode($result,true);
@@ -133,12 +153,18 @@ class LiveAppointments extends Component
             $this->status();
         }
 
-        $url='http://192.168.0.4:8080/api/doctor/dashboard';
+        $url='http://192.168.0.15:8080/api/doctor/dashboard';
+
 
         $curlHandler = curl_init();
-
-        curl_setopt($curlHandler,CURLOPT_URL,$url);
-        curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($curlHandler);
         $result = json_decode($result,true);

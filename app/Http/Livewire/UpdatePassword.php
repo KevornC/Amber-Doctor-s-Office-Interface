@@ -21,9 +21,9 @@ class UpdatePassword extends Component
 
         $userID=Session()->get('userResetPasswordID');
 
-        $url='http://192.168.0.4:8080/api/update/password';
+        $url='http://192.168.0.15:8080/api/update/password';
 
-        $ch = curl_init();
+        $curlHandler = curl_init();
 
         $data = array(
             'id'=>$userID,
@@ -32,14 +32,21 @@ class UpdatePassword extends Component
 
         $data = http_build_query($data);
 
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_POST,true);
-        curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_POST,true);
+         curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$data);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
-        $result = curl_exec($ch);
+        $result = curl_exec($curlHandler);
 
-        curl_close($ch);
+        curl_close($curlHandler);
         $this->emit('openModal','update-password-notification');
         return redirect()->route('staffDashboard');
         

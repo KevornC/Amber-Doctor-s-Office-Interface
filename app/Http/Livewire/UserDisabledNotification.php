@@ -13,6 +13,7 @@ class UserDisabledNotification extends Component
             Session()->pull('userID');
         }
         Session()->pull('tempUserDisabled');
+        Session()->pull('token');
         return redirect()->route('homepage');
     }
     public function render()

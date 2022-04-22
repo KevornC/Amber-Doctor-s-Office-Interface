@@ -17,7 +17,7 @@ class staffMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(Session()->has('staff')){
-            $url = 'http://192.168.0.4:8080/api/system/status';
+            $url = 'http://192.168.0.15:8080/api/system/status';
 
             $curlHandler = curl_init();
             
@@ -37,16 +37,23 @@ class staffMiddleware
             
             $id = session()->get('userID');
             
-            $statusUrl = 'http://192.168.0.4:8080/api/staff/status/'.$id;
+            $statusUrl = 'http://192.168.0.15:8080/api/staff/status/'.$id;
             
-            $ch = curl_init();
+            $curlHandler = curl_init();
+
+            $token =Session()->get('token');
+            $headers = array(
+                "Accept: application/json",
+                'Authorization: Bearer '.$token
+            );
             
-            curl_setopt($ch,CURLOPT_URL,$statusUrl);
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+            curl_setopt($curlHandler,CURLOPT_URL,$statusUrl);
+            curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+            curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
     
-            $status = curl_exec($ch);
+            $status = curl_exec($curlHandler);
             $status = json_decode($status,true);
-            curl_close($ch);
+            curl_close($curlHandler);
             if($status['message']=='User Disabled'){
                 Session()->put('tempUserDisabled','Yes');
                 return redirect()->route('userDisabled');

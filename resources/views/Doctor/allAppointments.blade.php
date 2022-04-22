@@ -1,7 +1,7 @@
 @extends('layouts\app')
 
 @section('title')
-All Appointments
+Amber Doctor's office
 @endsection
 
 @section('content')

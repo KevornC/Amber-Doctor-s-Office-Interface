@@ -21,9 +21,9 @@ class ResetPassword extends Component
 
         $userID=Session()->get('userTempResetPasswordID');
 
-        $url='http://192.168.0.4:8080/api/update/password';
+        $url='http://192.168.0.15:8080/api/update/password';
 
-        $ch = curl_init();
+        $curlHandler = curl_init();
 
         $data = array(
             'id'=>$userID,
@@ -32,14 +32,14 @@ class ResetPassword extends Component
 
         $data = http_build_query($data);
 
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_POST,true);
-        curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($curlHandler,CURLOPT_URL,$url);
+        curl_setopt($curlHandler,CURLOPT_POST,true);
+        curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$data);
+        curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
 
-        $result = curl_exec($ch);
+        $result = curl_exec($curlHandler);
 
-        curl_close($ch);
+        curl_close($curlHandler);
         session()->flash('passwordChanged','Update Successfully');
         return redirect()->route('login');
         

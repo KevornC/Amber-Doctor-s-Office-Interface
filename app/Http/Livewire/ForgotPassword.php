@@ -24,7 +24,7 @@ class ForgotPassword extends ModalComponent
     public function sendEmail(){
         $this->validate();
         
-        $url = 'http://192.168.0.4:8080/api/forgot/password/'.$this->email;
+        $url = 'http://192.168.0.15:8080/api/forgot/password/'.$this->email;
         $curlHandler = curl_init();
         
         curl_setopt($curlHandler,CURLOPT_URL,$url);

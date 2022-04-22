@@ -29,17 +29,24 @@ class LiveStaff extends Component
     public function updateStaff(){
         $data=$this->validate();
 
-        $url = 'http://192.168.0.4:8080/api/staff/update/'.$this->staffID;
-        $ch=curl_init();
+        $url = 'http://192.168.0.15:8080/api/staff/update/'.$this->staffID;
+        $curlHandler=curl_init();
 
         $information = http_build_query($data);
-        
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_POST,true);
-        curl_setopt($ch,CURLOPT_POSTFIELDS,$information);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
-        $results = curl_exec($ch);
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_POST,true);
+         curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$information);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
+
+        $results = curl_exec($curlHandler);
         $results = json_decode($results,true);
 
         $this->emit('openModal','success-notification');
@@ -49,37 +56,58 @@ class LiveStaff extends Component
     }
 
     public function updatePassword($id){
-        $url='http://192.168.0.4:8080/api/staff/update/password/'.$id;
+        $url='http://192.168.0.15:8080/api/staff/update/password/'.$id;
         
-        $ch = curl_init();
-        
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
-        
-        curl_exec($ch);
+        $curlHandler = curl_init();
 
-        curl_close($ch);
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
+        
+        curl_exec($curlHandler);
+
+        curl_close($curlHandler);
     }
     public function enableStaff($id){
 
-        $url='http://192.168.0.4:8080/api/staff/enable/'.$id;
+        $url='http://192.168.0.15:8080/api/staff/enable/'.$id;
 
         $curlHandler = curl_init();
 
-        curl_setopt($curlHandler,CURLOPT_URL,$url);
-        curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
         curl_exec($curlHandler);
         curl_close($curlHandler);
     }
     public function disableStaff($id){
 
-        $url='http://192.168.0.4:8080/api/staff/disable/'.$id;
+        $url='http://192.168.0.15:8080/api/staff/disable/'.$id;
 
         $curlHandler = curl_init();
 
-        curl_setopt($curlHandler,CURLOPT_URL,$url);
-        curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
         curl_exec($curlHandler);
         curl_close($curlHandler);
@@ -98,13 +126,20 @@ class LiveStaff extends Component
             'searchItem'=>'required | email',
         ]);
 
-        $url = 'http://192.168.0.4:8080/api/staff/search/'.$this->searchItem;
-        $ch=curl_init();
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        $url = 'http://192.168.0.15:8080/api/staff/search/'.$this->searchItem;
+        $curlHandler=curl_init();
 
-        $results = curl_exec($ch);
-        curl_close($ch);
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
+
+        $results = curl_exec($curlHandler);
+        curl_close($curlHandler);
         $results = json_decode($results,true);
         $this->search = $results['result'];
         $this->searchMode = true;
@@ -117,13 +152,20 @@ class LiveStaff extends Component
     }
 
     public function editStaff($id){
-        $url = 'http://192.168.0.4:8080/api/staff/edit/'.$id;
-        $ch=curl_init();
+        $url = 'http://192.168.0.15:8080/api/staff/edit/'.$id;
+        $curlHandler=curl_init();
 
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
-        $result = curl_exec($ch);
+        $result = curl_exec($curlHandler);
         $result=json_decode($result,true);
         $result = $result['staff'];
         $this->staffID=$result['id'];
@@ -134,16 +176,23 @@ class LiveStaff extends Component
 
     public function render()
     {
-        $url = 'http://192.168.0.4:8080/api/staff/show';
-        $ch=curl_init();
+        $url = 'http://192.168.0.15:8080/api/staff/show';
+        $curlHandler=curl_init();
 
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
-        $results = curl_exec($ch);
+        $results = curl_exec($curlHandler);
         $results = json_decode($results,true);
 
-        curl_close($ch);
+        curl_close($curlHandler);
         // dd($results);
         $staff=$results['staff'];
         $staffCount=count($staff['data']);

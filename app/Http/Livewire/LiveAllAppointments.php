@@ -33,17 +33,23 @@ class LiveAllAppointments extends Component
     }
 
     public function editAppointment($editID){
-        $url = 'http://192.168.0.4:8080/api/edit/appointment/'.$editID;
+        $url = 'http://192.168.0.15:8080/api/edit/appointment/'.$editID;
 
         $curlHandler = curl_init();
-        
-        curl_setopt($curlHandler,CURLOPT_URL,$url);
-        curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($curlHandler);
         $result = json_decode($result,true);
         $result = $result['appointment'];
-        // dd($result);
         $this->appointmentID = $result['id'];
         $this->firstName = $result['firstName'];
         $this->lastName =  $result['lastName'];
@@ -75,14 +81,21 @@ class LiveAllAppointments extends Component
         );
 
         $information=http_build_query($data);
-        $url = 'http://192.168.0.4:8080/api/update/appointment/'.$userID.'/'.$id;
+        $url = 'http://192.168.0.15:8080/api/update/appointment/'.$userID.'/'.$id;
 
         $curlHandler = curl_init();
-        
-        curl_setopt($curlHandler,CURLOPT_URL,$url);
-        curl_setopt($curlHandler,CURLOPT_POST,true);
-        curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$information);
-        curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_POST,true);
+         curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$information);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($curlHandler);
         $result = json_decode($result,true);
@@ -112,14 +125,21 @@ class LiveAllAppointments extends Component
         );
 
         $information=http_build_query($data);
-        $url = 'http://192.168.0.4:8080/api/update/status';
+        $url = 'http://192.168.0.15:8080/api/update/status';
 
         $curlHandler = curl_init();
-        
-        curl_setopt($curlHandler,CURLOPT_URL,$url);
-        curl_setopt($curlHandler,CURLOPT_POST,true);
-        curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$information);
-        curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_POST,true);
+         curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$information);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($curlHandler);
         $result = json_decode($result,true);
@@ -140,15 +160,21 @@ class LiveAllAppointments extends Component
             'searchItem'=>'required',
         ]);
 
-        $url = 'http://192.168.0.4:8080/api/appointment/search/'.$this->searchItem;
-        $ch=curl_init();
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         $url = 'http://192.168.0.15:8080/api/appointment/search/'.$this->searchItem;
+         $curlHandler=curl_init();
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
-        $results = curl_exec($ch);
-        // dd($results);
+        $results = curl_exec($curlHandler);
         $this->search = json_decode($results,true);
-        curl_close($ch);
+        curl_close($curlHandler);
         $this->searchMode = true;
         $this->clearSearchField();
 
@@ -160,12 +186,19 @@ class LiveAllAppointments extends Component
             $this->status();
         }
 
-        $url='http://192.168.0.4:8080/api/all/appointments';
+        $url='http://192.168.0.15:8080/api/all/appointments';
 
         $curlHandler = curl_init();
 
-        curl_setopt($curlHandler,CURLOPT_URL,$url);
-        curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($curlHandler);
         $result = json_decode($result,true);

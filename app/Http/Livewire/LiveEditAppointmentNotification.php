@@ -8,7 +8,6 @@ class LiveEditAppointmentNotification extends ModalComponent
 {
     public function close(){
         $this->emit('closeModal');
-        // return redirect()->route('staff');
     }
     public static function closeModalOnEscape(): bool
     {

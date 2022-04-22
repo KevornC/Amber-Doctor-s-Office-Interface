@@ -26,18 +26,23 @@ class LiveLogin extends Component
         $data = $this->validate();
 
         $information=http_build_query($data);
-        $url = 'http://192.168.0.4:8080/api/login';
+        $url = 'http://192.168.0.15:8080/api/login';
 
         $curlHandler = curl_init();
+
+        $headers = array(
+            "Accept: application/json",
+         );
         
         curl_setopt($curlHandler,CURLOPT_URL,$url);
         curl_setopt($curlHandler,CURLOPT_POST,true);
         curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$information);
         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($curlHandler);
+        // dd($result);
         $result = json_decode($result,true);
-        
         curl_close($curlHandler);
         
         if($result['message']=='Login Failed'){
@@ -45,6 +50,7 @@ class LiveLogin extends Component
         }
         if($result['message']=='Login Successful'){
             Session()->put('userID',$result['id']);
+            Session()->put('token',$result['token']);
             if($result['role']=='doctor'){
                 Session()->put('doctor',$result['role']);
                 return redirect()->route('doctorDashboard');

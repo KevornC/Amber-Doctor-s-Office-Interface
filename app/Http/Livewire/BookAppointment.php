@@ -28,7 +28,7 @@ class BookAppointment extends ModalComponent
         $data = $this->validate();
 
         $information=http_build_query($data);
-        $url = 'http://192.168.0.4:8080/api/set/appointment';
+        $url = 'http://192.168.0.15:8080/api/set/appointment';
 
         $curlHandler = curl_init();
         

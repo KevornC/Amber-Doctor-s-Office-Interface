@@ -21,14 +21,21 @@ class LiveAddStaff extends ModalComponent
         $data = $this->validate();
 
         $information=http_build_query($data);
-        $url = 'http://192.168.0.4:8080/api/staff/create';
+        $url = 'http://192.168.0.15:8080/api/staff/create';
 
         $curlHandler = curl_init();
-        
-        curl_setopt($curlHandler,CURLOPT_URL,$url);
-        curl_setopt($curlHandler,CURLOPT_POST,true);
-        curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$information);
-        curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+
+        $token =Session()->get('token');
+        $headers = array(
+            "Accept: application/json",
+            'Authorization: Bearer '.$token
+         );
+         
+         curl_setopt($curlHandler,CURLOPT_URL,$url);
+         curl_setopt($curlHandler,CURLOPT_POST,true);
+         curl_setopt($curlHandler,CURLOPT_POSTFIELDS,$information);
+         curl_setopt($curlHandler,CURLOPT_RETURNTRANSFER,true);
+         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($curlHandler);
         $result = json_decode($result,true);
