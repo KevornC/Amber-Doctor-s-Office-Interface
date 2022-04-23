@@ -34,6 +34,7 @@ class StaffController extends Controller
         $result = curl_exec($curlHandler);
         $result = json_decode($result,true);
         curl_close($curlHandler);
+        Session()->flush('token');
         Session()->flush('staff');
 
         return redirect()->route('login');
