@@ -97,10 +97,11 @@
           </div>
           @if(Session()->has('systemDown'))
         <button type="button" wire:click="$emit('openModal','system-down')" class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Login</button>
+        <button type="button" wire:click="$emit('openModal','system-down')"><span class="text-sm ml-2 hover:text-blue-500 cursor-pointer border-b-2 border-gray-200 hover:border-gray-400">Forgot Password ?</span></button>
         @else
         <button type="submit" class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Login</button>
-        @endif
         <button type="button" wire:click="$emit('openModal','forgot-password')"><span class="text-sm ml-2 hover:text-blue-500 cursor-pointer border-b-2 border-gray-200 hover:border-gray-400">Forgot Password ?</span></button>
+        @endif
       </form>
     </div>
   </div>
